@@ -1,0 +1,21 @@
+apiVersion: 1
+
+datasources:
+  - name: Graphite
+    type: graphite
+    access: direct
+    url: http://localhost
+    jsonData:
+      graphiteVersion: "1.1"
+    version: 1
+    editable: true
+  %{ if enable_cloudwatch }
+  - name: Cloudwatch
+    type: cloudwatch
+    access: direct
+    jsonData:
+      authType: credentials
+      defaultRegion: ${region}
+    version: 1
+    editable: true
+  %{ endif }
