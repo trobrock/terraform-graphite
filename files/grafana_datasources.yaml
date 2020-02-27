@@ -8,6 +8,7 @@ datasources:
     url: ${graphite_url}
     jsonData:
       graphiteVersion: "1.1"
+      graphiteType: "default"
     version: 1
     editable: true
   %{ if enable_cloudwatch }
