@@ -1,14 +1,10 @@
-data "aws_route53_zone" "zone" {
-  zone_id = var.zone_id
-}
-
 data "template_file" "grafana_datasources" {
   template = file("${path.module}/files/grafana_datasources.yaml")
 
   vars                = {
     region            = var.region
     enable_cloudwatch = var.enable_cloudwatch_role
-    graphite_url      = "https://${var.domain}.${trimsuffix(data.aws_route53_zone.zone.name, ".")}"
+    graphite_url      = "http://localhost"
   }
 }
 

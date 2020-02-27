@@ -4,7 +4,7 @@ datasources:
   - name: Graphite
     type: graphite
     isDefault: true
-    access: direct
+    access: proxy
     url: ${graphite_url}
     jsonData:
       graphiteVersion: "1.1"
