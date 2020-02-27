@@ -8,7 +8,7 @@ data "template_file" "grafana_datasources" {
   vars                = {
     region            = var.region
     enable_cloudwatch = var.enable_cloudwatch_role
-    graphite_url      = "https://${var.domain}.${data.aws_route53_zone.zone.name}"
+    graphite_url      = "https://${var.domain}.${trimsuffix(data.aws_route53_zone.zone.name, ".")}"
   }
 }
 
