@@ -9,6 +9,10 @@ resource "aws_lb_target_group" "graphite" {
   port     = 80
   protocol = "HTTP"
   vpc_id   = var.vpc_id
+
+  health_check {
+    path = "/grafana/api/health"
+  }
 }
 
 resource "aws_lb_listener" "https" {
