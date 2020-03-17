@@ -23,6 +23,7 @@ resource "aws_instance" "graphite" {
   subnet_id              = var.subnets[0]
   vpc_security_group_ids = [aws_security_group.graphite.id]
   iam_instance_profile   = var.enable_cloudwatch_role ? aws_iam_instance_profile.grafana[0].name : null
+  availability_zone      = var.availability_zone
 
   tags = {
     Name = var.name
