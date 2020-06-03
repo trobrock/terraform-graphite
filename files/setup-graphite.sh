@@ -41,7 +41,7 @@ chkconfig httpd on
 systemctl start httpd
 
 echo '${carbon_storage_schemas_content}' > /etc/carbon/storage-schemas.conf
-echo '${carbon_storage_aggregations_content}' > /etc/carbon/storage-aggregations.conf
+echo '${carbon_storage_aggregations_content}' > /etc/carbon/storage-aggregation.conf
 
 curl -L https://raw.githubusercontent.com/graphite-project/carbon/master/distro/redhat/init.d/carbon-cache > /etc/init.d/carbon-cache
 chmod 0755 /etc/init.d/carbon-cache
