@@ -63,3 +63,21 @@ variable "region" {
   type        = string
   default     = "us-east-1"
 }
+
+variable "carbon_data_volume_size" {
+  description = "The size in GB of the carbon data volume"
+  type        = number
+  default     = 5
+}
+
+variable "grafana_data_volume_size" {
+  description = "The size in GB of the Grafana data volume"
+  type        = number
+  default     = 1
+}
+
+variable "grafana_web_data_volume_size" {
+  description = "The size in GB of the Grafana Web data volume"
+  type        = number
+  default     = 1
+}

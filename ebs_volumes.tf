@@ -1,6 +1,6 @@
 resource "aws_ebs_volume" "graphite_web_data" {
   availability_zone = var.availability_zone
-  size              = 1
+  size              = var.grafana_web_data_volume_size
 
   tags = {
     Name = "${var.name} graphite-web data"
@@ -16,7 +16,7 @@ resource "aws_volume_attachment" "graphite_web_data" {
 
 resource "aws_ebs_volume" "grafana_data" {
   availability_zone = var.availability_zone
-  size              = 1
+  size              = var.grafana_data_volume_size
 
   tags = {
     Name = "${var.name} grafana data"
@@ -32,7 +32,7 @@ resource "aws_volume_attachment" "grafana_data" {
 
 resource "aws_ebs_volume" "carbon_data" {
   availability_zone = var.availability_zone
-  size              = 5
+  size              = var.carbon_data_volume_size
 
   tags = {
     Name = "${var.name} carbon data"
