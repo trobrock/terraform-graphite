@@ -81,3 +81,9 @@ variable "grafana_web_data_volume_size" {
   type        = number
   default     = 1
 }
+
+variable "enable_snapshots" {
+  description = "Whether to enable automated snapshots of the EBS volumes"
+  type        = bool
+  default     = true
+}
