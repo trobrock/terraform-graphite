@@ -1,3 +1,7 @@
+provider "cloudinit" {
+  version = "2.0.0"
+}
+
 locals {
   graphite_web_data_volume = "xvdb"
   grafana_data_volume      = "xvdc"
@@ -18,7 +22,7 @@ data "aws_ami" "al2" {
 resource "aws_instance" "graphite" {
   ami                    = data.aws_ami.al2.id
   instance_type          = var.instance_type
-  user_data_base64       = data.template_cloudinit_config.config.rendered
+  user_data_base64       = data.cloudinit_config.config.rendered
   key_name               = var.key_pair_name
   subnet_id              = var.subnets[0]
   vpc_security_group_ids = [aws_security_group.graphite.id]
