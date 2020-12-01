@@ -34,7 +34,7 @@ resource "aws_instance" "graphite" {
   }
 
   lifecycle {
-    ignore_changes = ["ami"]
+    ignore_changes = [ami]
   }
 }
 
