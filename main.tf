@@ -32,6 +32,10 @@ resource "aws_instance" "graphite" {
   tags = {
     Name = var.name
   }
+
+  lifecycle {
+    ignore_changes = ["ami"]
+  }
 }
 
 resource "aws_eip" "graphite" {
