@@ -4,22 +4,14 @@ add_attachment() {
   volume_name="$1"
   mount_point="$2"
 
-  while ! (lsblk -r | awk '/disk/{ print $1 }' | xargs -I% bash -c '/sbin/ebsnvme-id /dev/% | tail -1' | grep $volume_name) ; do
-    echo "Waiting for $volume_name to be in block devices..."
+  while ! (lsblk | grep $volume_name) ; do
     sleep 1 # Wait for the volume to be attached
   done
   mkdir -p $mount_point
-
-  for nvme in $(lsblk -r | awk '/disk/{ print $1 }') ; do
-    if (/sbin/ebsnvme-id /dev/$nvme | grep $volume_name) ; then
-      echo "Found $nvme as $volume_name"
-      nvme_id=$nvme
-    fi
-  done
-  if ! (file -s /dev/$nvme_id | grep -i 'xfs' > /dev/null); then
-    mkfs -t xfs /dev/$nvme_id
+  if ! (file -s /dev/$volume_name | grep -i 'xfs' > /dev/null); then
+    mkfs -t xfs /dev/$volume_name
   fi
-  uuid=$(lsblk -o +UUID | awk "/$nvme_id/{ print \$7 }")
+  uuid=$(lsblk -o +UUID | awk "/$volume_name/{ print \$7 }")
   echo "UUID=$uuid  $mount_point xfs defaults,nofail 0 2" >> /etc/fstab
 }
 
