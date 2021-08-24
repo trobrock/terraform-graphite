@@ -28,7 +28,7 @@ add_attachment() {
     mkfs -t xfs /dev/$volume_name
   fi
   uuid=$(lsblk -o +UUID | awk "/$volume_name/{ print \$7 }")
-  echo "UUID=$uuid  $mount_point xfs defaults,nofail 0 2" >> /etc/fstab
+  echo "UUID=$uuid  $mount_point xfs defaults,nofail 0 0" >> /etc/fstab
 }
 
 set -e
